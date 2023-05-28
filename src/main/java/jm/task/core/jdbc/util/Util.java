@@ -17,7 +17,7 @@ public class Util {
             System.out.println("\n\n\nUtil.getConnection with DB is good!!!\n");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.err.println("\nUtil.getConnection with DB - Error\n");
+            System.err.println("\nUtil.getConnection with DB - Error!\n");
         }
         return connection;
     }
@@ -28,7 +28,7 @@ public class Util {
             System.out.println("\nUtil.closeConnection БД успешно закрыта!!!\n");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.err.println("\nUtil.closeConnection Error закрытия соединения с БД\n");
+            System.err.println("\nUtil.closeConnection Error закрытия соединения с БД!\n");
         }
     }
     private Util () {
