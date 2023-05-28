@@ -14,7 +14,7 @@ public class Util {
         connection = null;
         try {
             connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-            System.out.println("\nUtil.getConnection with DB is good!!!\n");
+            System.out.println("\n\n\nUtil.getConnection with DB is good!!!\n");
         } catch (SQLException e) {
             e.printStackTrace();
             System.err.println("\nUtil.getConnection with DB - Error\n");
