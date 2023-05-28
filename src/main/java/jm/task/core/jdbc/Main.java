@@ -1,9 +1,5 @@
 package jm.task.core.jdbc;
 
-import jm.task.core.jdbc.service.UserService;
-import jm.task.core.jdbc.service.UserServiceImpl;
-import jm.task.core.jdbc.util.Util;
-
 /**
  *          Необходимые операции:
  * 1.	 Создание таблицы для User(ов) – не должно приводить к исключению, если такая таблица уже существует
@@ -23,16 +19,20 @@ import jm.task.core.jdbc.util.Util;
  * 4.	 Очистка таблицы User(ов)
  * 5.	 Удаление таблицы
  */
+
+import jm.task.core.jdbc.service.UserService;
+import jm.task.core.jdbc.service.UserServiceImpl;
+import jm.task.core.jdbc.util.Util;
+
 public class Main {
     public static void main(String[] args) {
-        // реализуйте алгоритм здесь
-        Util.getConnection();
-
         UserService userService = new UserServiceImpl();
+
         userService.createUsersTable();
+
         userService.saveUser("Уинстон", "Черчилль", (byte) 90);
-        userService.saveUser("Иосиф", "Сталин", (byte) 93);
-        userService.saveUser("Рональд", "Рейган", (byte) 75);
+        userService.saveUser("Иосиф", "Сталин", (byte) 75);
+        userService.saveUser("Рональд", "Рейган", (byte) 93);
         userService.saveUser("Маргарет", "Тетчер", (byte) 87);
         userService.getAllUsers();
         userService.cleanUsersTable();
@@ -40,4 +40,5 @@ public class Main {
 
         Util.closeConnection();
     }
+
 }
