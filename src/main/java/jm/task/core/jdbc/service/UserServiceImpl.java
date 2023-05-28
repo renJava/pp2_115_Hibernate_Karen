@@ -23,18 +23,22 @@ public class UserServiceImpl implements UserService {
 
     public void saveUser(String name, String lastName, byte age) {
         userDao.saveUser(name, lastName, age);
+        System.out.println("\tМЕТОД ДОБАВЛЕНИЕ USERa В ТАБЛИЦУ\n");
     }
 
     public void removeUserById(long id) {
         userDao.removeUserById(id);
+        System.out.println("\tМЕТОД УДАЛЕНИЯ USERa ИЗ ТАБЛИЦЫ ( по id )");
     }
 
     public List<User> getAllUsers() {
+        System.out.println("\tМЕТОД ПОЛУЧЕНИЕ ВСЕХ USER(ов) ИЗ ТАБЛИЦЫ");
         return userDao.getAllUsers();
     }
 
     public void cleanUsersTable() {
         userDao.cleanUsersTable();
+        System.out.println("\tМЕТОД УДАЛЕНИЕ ТАБЛИЦЫ User(ов)");
     }
 
 }
