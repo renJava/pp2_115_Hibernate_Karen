@@ -1,1 +1,1 @@
-pp2_115_Maven_JDBC_Karen
+pp2_115_Hibernate_Karen
