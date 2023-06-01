@@ -7,12 +7,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-//import java.sql.Connection;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
-    private SessionFactory sessionFactory = Util.getSessionFactory();
-    public UserDaoHibernateImpl () {};
+    private final SessionFactory sessionFactory = Util.getSessionFactory();
+    public UserDaoHibernateImpl () {// Пустой конструктор
+
+    }
     @Override
     public void createUsersTable() {
         Transaction transaction = null;
@@ -24,11 +25,11 @@ public class UserDaoHibernateImpl implements UserDao {
                     " lastname VARCHAR(45)," +
                     " age TINYINT)");
             query.executeUpdate();
-            System.out.println("sessionFactory отлично коптит");
+            System.out.println("Таблица создана и sessionFactory отлично коптит");
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
-                System.out.println("sessionFactory заглохла");
+                System.out.println("Таблица не создана и sessionFactory заглохла");
                 transaction.rollback();
             }
         }
@@ -36,7 +37,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        Transaction transaction = null;
+        Transaction transaction;
         try(Session session = sessionFactory.getCurrentSession()) {
             transaction = session.beginTransaction();
             Query<User> query = session.createSQLQuery("DROP TABLE rendb.users");
@@ -68,7 +69,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void removeUserById(long id) {
         Transaction transaction = null;
-        User user = null;
+        User user;
         try (Session session = Util.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             user = session.get(User.class, id);
@@ -103,7 +104,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        Transaction transaction = null;
+        Transaction transaction;
         try (Session session = Util.getSessionFactory().getCurrentSession()) {
             transaction = session.beginTransaction();
             Query<User> query = session.createQuery("DELETE FROM User u");

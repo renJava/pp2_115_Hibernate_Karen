@@ -4,8 +4,8 @@ package jm.task.core.jdbc.util;
 import jm.task.core.jdbc.model.User;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+//import org.hibernate.boot.registry.StandardServiceRegistry;
+//import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
 
@@ -25,13 +25,9 @@ public class Util {
                 settings.put(AvailableSettings.URL, "jdbc:mysql://localhost:3306/rendb");
                 settings.put(AvailableSettings.USER, "root");
                 settings.put(AvailableSettings.PASS, "root");
-//                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
-//                settings.put(Environment.SHOW_SQL, "true");
                 settings.put(AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-//                settings.put(Environment.HBM2DDL_AUTO, "update");
                 configuration.setProperties(settings).addAnnotatedClass(User.class);
-                StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                        .applySettings(configuration.getProperties()).build();
+//                StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
                 sessionFactory = configuration.buildSessionFactory();
                 System.out.println("Сессия успешно создана");
             } catch (HibernateException e) {
@@ -52,3 +48,7 @@ public class Util {
     }
 
 }
+
+//                settings.put(Environment.HBM2DDL_AUTO, "update");
+//                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
+//                settings.put(Environment.SHOW_SQL, "true");
