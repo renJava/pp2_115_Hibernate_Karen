@@ -12,14 +12,14 @@ import java.util.List;
 public class UserDaoHibernateImpl implements UserDao {
     private final SessionFactory sessionFactory = Util.getSessionFactory();
     public UserDaoHibernateImpl () {// Пустой конструктор
-
     }
+
     @Override
     public void createUsersTable() {
         Transaction transaction = null;
         try (Session session = sessionFactory.getCurrentSession()) {
             transaction = session.beginTransaction();
-            Query<User> query = session.createSQLQuery("CREATE TABLE users (" +
+            Query<User> query = session.createSQLQuery("CREATE TABLE IF NOT EXISTS users (" +
                     "id INT PRIMARY KEY AUTO_INCREMENT," +
                     "name VARCHAR(45)," +
                     " lastname VARCHAR(45)," +
@@ -40,7 +40,7 @@ public class UserDaoHibernateImpl implements UserDao {
         Transaction transaction;
         try(Session session = sessionFactory.getCurrentSession()) {
             transaction = session.beginTransaction();
-            Query<User> query = session.createSQLQuery("DROP TABLE rendb.users");
+            Query<User> query = session.createSQLQuery("DROP TABLE IF EXISTS users");
             query.executeUpdate();
             transaction.commit();
             System.out.println("Таблица удалена");
