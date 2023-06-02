@@ -3,7 +3,7 @@
 !**/src/test/**/target/
 
 ### IntelliJ IDEA & other ###
-.idea/
+/.idea
 **/target
 .gitignore
 
