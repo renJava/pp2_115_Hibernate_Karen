@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import static org.hibernate.tool.schema.SchemaToolingLogging.LOGGER;
 
 public class UserDaoHibernateImpl implements UserDao {
     private final SessionFactory sessionFactory = Util.getSessionFactory();
@@ -43,7 +44,7 @@ public class UserDaoHibernateImpl implements UserDao {
             Query<User> query = session.createSQLQuery("DROP TABLE IF EXISTS users");
             query.executeUpdate();
             transaction.commit();
-            System.out.println("Таблица удалена");
+            LOGGER.info("Таблица удалена\n");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("dropUsersTable: Таблицы и не было");
@@ -60,7 +61,7 @@ public class UserDaoHibernateImpl implements UserDao {
             System.out.println("Override метода Hibernate.saveUser. User c именем - " + name + " добавлен в базу данных");
         } catch (Exception e) {
             if (transaction != null) {
-                System.out.println("saveUser: User'a невозможно добавить в базу");
+                LOGGER.info("saveUser: User'a невозможно добавить в базу");
                 transaction.rollback();
             }
         }
@@ -93,11 +94,11 @@ public class UserDaoHibernateImpl implements UserDao {
             for (User users : list) {
                 System.out.println(users);
             }
-            System.out.println("Override метода getAllUsers - полный список БД");
+            System.out.println("\nOverride метода getAllUsers - полный список БД");
             return list;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("\ngetAllUsers: Списка Userов и не было\n");
+            LOGGER.info("\ngetAllUsers: Списка Userов и не было\n");
         }
         return list;
     }

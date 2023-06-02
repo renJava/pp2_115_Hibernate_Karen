@@ -9,6 +9,8 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.Properties;
 
+import static org.hibernate.tool.schema.SchemaToolingLogging.LOGGER;
+
 public class Util {
 
     private static SessionFactory sessionFactory;
@@ -24,9 +26,10 @@ public class Util {
                 settings.put(AvailableSettings.USER, "root");
                 settings.put(AvailableSettings.PASS, "root");
                 settings.put(AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS, "thread");
+                settings.put(AvailableSettings.DIALECT, "org.hibernate.dialect.MySQLDialect");
                 configuration.setProperties(settings).addAnnotatedClass(User.class);
                 sessionFactory = configuration.buildSessionFactory();
-                System.out.println("Сессия успешно создана");
+                System.out.println("\n\nСессия успешно создана");
             } catch (HibernateException e) {
                 e.printStackTrace();
                 System.out.println("Сессия не создана");
