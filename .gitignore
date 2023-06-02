@@ -5,6 +5,8 @@
 ### IntelliJ IDEA & other ###
 .idea/
 **/target
+.gitignore
+
 
 #modules.xml
 #.idea/jarRepositories.xml
@@ -17,7 +19,6 @@
 *.ipr
 *.url
 *.lnk
-.gitignore
 
 
 ### Eclipse ###
