@@ -9,7 +9,6 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.Properties;
 
-import static org.hibernate.tool.schema.SchemaToolingLogging.LOGGER;
 
 public class Util {
 
