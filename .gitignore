@@ -1,10 +1,10 @@
-target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA & other ###
 .idea/
+/target/
 
 #modules.xml
 #.idea/jarRepositories.xml
