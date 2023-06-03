@@ -20,6 +20,7 @@ public class UserServiceTest {
         try {
             userService.dropUsersTable();
             userService.dropUsersTable();
+            System.out.println();
         } catch (Exception e) {
             Assert.fail("При тестировании удаления таблицы произошло исключение\n" + e);
         }

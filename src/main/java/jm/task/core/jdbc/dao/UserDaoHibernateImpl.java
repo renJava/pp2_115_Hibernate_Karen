@@ -30,7 +30,7 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
-                System.out.println("Таблица не создана и sessionFactory заглохла");
+                LOGGER.info("Таблица не создана и sessionFactory заглохла");
                 transaction.rollback();
             }
         }
@@ -44,10 +44,10 @@ public class UserDaoHibernateImpl implements UserDao {
             Query<User> query = session.createSQLQuery("DROP TABLE IF EXISTS users");
             query.executeUpdate();
             transaction.commit();
-            LOGGER.info("Таблица удалена\n");
+            LOGGER.info("Таблица удалена");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("dropUsersTable: Таблицы и не было");
+            LOGGER.info("dropUsersTable: Таблицы и не было");
         }
     }
 
@@ -79,7 +79,7 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
-                System.out.println("removeUserById: Такого User в БД и не было\n");
+                LOGGER.info("removeUserById: User № " + id + " в БД и не было\n");
                 transaction.rollback();
             }
         }
@@ -94,7 +94,7 @@ public class UserDaoHibernateImpl implements UserDao {
             for (User users : list) {
                 System.out.println(users);
             }
-            System.out.println("\nOverride метода getAllUsers - полный список БД");
+            System.out.println("Override метода getAllUsers - полный список БД\n");
             return list;
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,11 +110,11 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction = session.beginTransaction();
             Query<User> query = session.createQuery("DELETE FROM User u");
             query.executeUpdate();
-            System.out.println("Таблица Users очищена\n");
+            System.out.println("Таблица Users очищена");
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("cleanUsersTable: Таблицы Users и не было\n");
+            LOGGER.info("cleanUsersTable: Таблицы Users и не было\n");
         }
     }
 
