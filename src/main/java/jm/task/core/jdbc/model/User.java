@@ -20,9 +20,7 @@ public class User {
     @Column(name = "age")
     private Byte age;
 
-    public User() {
-
-    }
+    public User() { /* Пустой конструктор */}
 
     public User(String name, String lastName, Byte age) {
         this.name = name;
@@ -30,25 +28,13 @@ public class User {
         this.age = age;
     }
 
-    public String name() {
-        return name;
-    }
+    public String name() { return name; }
 
+    public String getName() { return name; }
 
-    public String getName() {
-        return name;
-    }
+    public String getLastName() { return lastName; }
 
-
-    public String getLastName() {
-        return lastName;
-    }
-
-
-    public Byte getAge() {
-        return age;
-    }
-
+    public Byte getAge() { return age; }
 
     @Override
     public String toString() {

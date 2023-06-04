@@ -27,13 +27,12 @@ public class Util {
                 settings.put(AvailableSettings.USER, "root");
                 settings.put(AvailableSettings.PASS, "root");
                 settings.put(AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                settings.put(AvailableSettings.DIALECT, "org.hibernate.dialect.MySQLDialect");
                 configuration.setProperties(settings).addAnnotatedClass(User.class);
                 sessionFactory = configuration.buildSessionFactory();
                 System.out.println("\n\nСессия успешно создана!!!\n");
             } catch (HibernateException e) {
                 e.printStackTrace();
-                LOGGER.info("Сессия не создана");
+                System.out.println("Сессия не создана");
             }
         }
         return sessionFactory;

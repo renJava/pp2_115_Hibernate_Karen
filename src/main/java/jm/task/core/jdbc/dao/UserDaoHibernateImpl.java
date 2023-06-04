@@ -12,8 +12,7 @@ import static org.hibernate.tool.schema.SchemaToolingLogging.LOGGER;
 
 public class UserDaoHibernateImpl implements UserDao {
     private final SessionFactory sessionFactory = Util.getSessionFactory();
-    public UserDaoHibernateImpl () {// Пустой конструктор
-    }
+    public UserDaoHibernateImpl () {/* Пустой конструктор */}
 
     @Override
     public void createUsersTable() {
@@ -30,7 +29,7 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
-                LOGGER.info("Таблица не создана и sessionFactory заглохла");
+                System.out.println("Таблица не создана и sessionFactory заглохла");
                 transaction.rollback();
             }
         }
@@ -44,10 +43,10 @@ public class UserDaoHibernateImpl implements UserDao {
             Query<User> query = session.createSQLQuery("DROP TABLE IF EXISTS users");
             query.executeUpdate();
             transaction.commit();
-            LOGGER.info("Таблица удалена");
+            System.out.println("Таблица удалена");
         } catch (Exception e) {
             e.printStackTrace();
-            LOGGER.info("dropUsersTable: Таблицы и не было");
+            System.out.println("dropUsersTable: Таблицы и не было");
         }
     }
 
@@ -61,8 +60,8 @@ public class UserDaoHibernateImpl implements UserDao {
             System.out.println("Override метода Hibernate.saveUser. User c именем - " + name + " добавлен в базу данных");
         } catch (Exception e) {
             if (transaction != null) {
-                LOGGER.info("saveUser: User'a невозможно добавить в базу");
-                transaction.rollback();
+                System.out.println("saveUser: User'a невозможно добавить в базу");
+//                transaction.rollback();
             }
         }
     }
@@ -79,8 +78,8 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
-                LOGGER.info("removeUserById: User № " + id + " в БД и не было\n");
-                transaction.rollback();
+                System.out.println("removeUserById: User № " + id + " в БД и не было\n");
+//                transaction.rollback();
             }
         }
     }
@@ -98,7 +97,7 @@ public class UserDaoHibernateImpl implements UserDao {
             return list;
         } catch (Exception e) {
             e.printStackTrace();
-            LOGGER.info("\ngetAllUsers: Списка Userов и не было\n");
+            System.out.println("\ngetAllUsers: Списка Userов и не было\n");
         }
         return list;
     }
@@ -114,7 +113,7 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            LOGGER.info("cleanUsersTable: Таблицы Users и не было\n");
+            System.out.println("cleanUsersTable: Таблицы Users и не было\n");
         }
     }
 
