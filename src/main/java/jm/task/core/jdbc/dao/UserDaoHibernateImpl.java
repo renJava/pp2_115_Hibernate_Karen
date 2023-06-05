@@ -8,7 +8,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
-import static org.hibernate.tool.schema.SchemaToolingLogging.LOGGER;
 
 public class UserDaoHibernateImpl implements UserDao {
     private final SessionFactory sessionFactory = Util.getSessionFactory();
@@ -25,8 +24,8 @@ public class UserDaoHibernateImpl implements UserDao {
                     " lastname VARCHAR(45)," +
                     " age TINYINT)");
             query.executeUpdate();
-            System.out.println("Таблица создана и sessionFactory отлично коптит");
             transaction.commit();
+            System.out.println("Таблица создана и sessionFactory отлично коптит");
         } catch (Exception e) {
             if (transaction != null) {
                 System.out.println("Таблица не создана и sessionFactory заглохла");
@@ -74,8 +73,8 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction = session.beginTransaction();
             user = session.get(User.class, id);
             session.delete(user);
-            System.out.println("Override метода Hibernate.removeUserById. User по id удален\n");
             transaction.commit();
+            System.out.println("Override метода Hibernate.removeUserById. User по id удален\n");
         } catch (Exception e) {
             if (transaction != null) {
                 System.out.println("removeUserById: User № " + id + " в БД и не было\n");
@@ -109,8 +108,8 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction = session.beginTransaction();
             Query<User> query = session.createQuery("DELETE FROM User u");
             query.executeUpdate();
-            System.out.println("Таблица Users очищена");
             transaction.commit();
+            System.out.println("Таблица Users очищена");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("cleanUsersTable: Таблицы Users и не было\n");

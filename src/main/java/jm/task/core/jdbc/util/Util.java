@@ -9,7 +9,7 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.Properties;
 
-import static org.hibernate.tool.schema.SchemaToolingLogging.LOGGER;
+import static org.hibernate.cfg.AvailableSettings.HBM2DDL_AUTO;
 
 
 public class Util {
@@ -27,6 +27,7 @@ public class Util {
                 settings.put(AvailableSettings.USER, "root");
                 settings.put(AvailableSettings.PASS, "root");
                 settings.put(AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS, "thread");
+                settings.put(HBM2DDL_AUTO, "update");       //TODO Нужен ли HBM2DDL_AUTO в данном контексте???
                 configuration.setProperties(settings).addAnnotatedClass(User.class);
                 sessionFactory = configuration.buildSessionFactory();
                 System.out.println("\n\nСессия успешно создана!!!\n");
